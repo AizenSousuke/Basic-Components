@@ -1,0 +1,24 @@
+<h3>The Servers Component</h3>
+<div class="btn-group" role="group">
+    <input class="btn btn-primary" type="button" value="Create New Server" (click)="addServer()">
+    <input class="btn btn-danger" type="button" value="Delete Last Server" (click)="deleteServer()">
+    <div class="dropdown" [ngClass]="{'open': toggleOpen}" (click)="toggleDropdown()">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="triggerId" data-toggle="dropdown" aria-haspopup="false"
+                aria-expanded="false">
+                    Delete Servers
+                </button>
+        <div class="dropdown-menu" aria-labelledby="triggerId">
+            <button *ngFor="let server of servers" class="dropdown-item" (click)="deleteServer(server.id)">Delete {{ server.name }}</button>
+        </div>
+    </div>
+</div>
+<div>Server creation status: </div>
+<div *ngFor="let server of servers">
+    <app-server [id]="server.id" [name]="server.name"></app-server>
+</div>
+<div class="col-xs-12">
+    <p>Console:</p>
+    <ng-container *ngFor="let server of servers">
+        {{ server.name }}
+    </ng-container>    
+</div>
